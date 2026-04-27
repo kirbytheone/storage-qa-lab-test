@@ -1,0 +1,6 @@
+pytest
+ruff
+black
+pytest-html
+pytest-xdist
+pytest-rerunfailures
