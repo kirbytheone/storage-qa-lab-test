@@ -12,24 +12,28 @@ pipeline {
             }
         }
 
-        stage('Run tests in Docker') {
-            steps {
-                sh '''
-                docker run --rm \
-                  -v "$PWD":/app \
-                  -v /mnt/storage_qa:/storage \
-                  -w /app \
-                  -e STORAGE_PATH=/storage \
-                  python:3.12-slim \
-                  bash -c "
-                    pip install -r requirements.txt &&
-                    ruff check . &&
-                    black --check . &&
-                    pytest -v --html=report.html --self-contained-html
-                  "
-                '''
-            }
-        }
+stage('Run tests in Docker') {
+    steps {
+        sh '''
+        echo "=== DEBUG WORKSPACE ==="
+        pwd
+        ls -la
+
+        docker run --rm \
+          -v "$PWD":/app \
+          -v /mnt/storage_qa:/storage \
+          -w /app \
+          python:3.12-slim \
+          bash -c "
+            echo '=== INSIDE CONTAINER ===' &&
+            pwd &&
+            ls -la &&
+            pip install -r requirements.txt &&
+            pytest -v
+          "
+        '''
+    }
+}
 
         stage('Archive report') {
             steps {
