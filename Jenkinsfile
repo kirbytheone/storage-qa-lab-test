@@ -30,7 +30,7 @@ stage('Run tests in Docker') {
             pwd &&
             ls -la &&
             pip install -r requirements.txt &&
-            pytest -v
+            pytest -v --html=report.html --self-contained-html
           "
         '''
     }
