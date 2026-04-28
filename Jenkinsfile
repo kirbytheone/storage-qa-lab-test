@@ -20,7 +20,7 @@ stage('Run tests in Docker') {
         ls -la
 
         docker run --rm \
-          -v "$PWD":/app \
+          -v /var/jenkins_home/workspace/storage-qa-pipeline:/app \
           -v /mnt/storage_qa:/storage \
           -w /app \
           python:3.12-slim \
