@@ -16,13 +16,14 @@ stage('Run tests in Docker') {
     steps {
         sh '''
         echo "=== DEBUG WORKSPACE ==="
-        pwd
-        ls -la
+        echo "$WORKSPACE"
+        ls -la "$WORKSPACE"
 
         docker run --rm \
-          -v /var/jenkins_home/workspace/storage-qa-pipeline:/app \
+          --volumes-from jenkins \
           -v /mnt/storage_qa:/storage \
-          -w /app \
+          -w "$WORKSPACE" \
+          -e STORAGE_PATH=/storage \
           python:3.12-slim \
           bash -c "
             echo '=== INSIDE CONTAINER ===' &&
