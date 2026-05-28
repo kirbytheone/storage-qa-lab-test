@@ -1,7 +1,28 @@
-# STORAGE QA RUSPBERRY PI5 AUTOMATION
+# Storage QA Raspberry Pi 5 Automation
 
-This project demonstrates automated storage testing using Python, pytest, Docker, and Jenkins.
 
+This project demonstrates automated storage validation testing using Python, pytest, Docker, Jenkins, 
+and Raspberry Pi 5 infrastructure.
+The framework validates file operations, data integrity, mounted storage behavior, permissions, 
+and directory structures in a Linux-based environment.
+
+## Project Structure
+
+```text
+storage-qa-lab-test/
+├── tests/storage/
+│   ├── test_bulk.py
+│   ├── test_directories.py
+│   ├── test_file_integrity.py
+│   ├── test_mount.py
+│   ├── test_permissions.py
+│   └── test_simple_file_operations.py
+├── local_storage/
+├── Jenkinsfile
+├── pytest.ini
+├── requirements.txt
+└── README.md
+```
 ## STORAGE TESTS
 
 - File operations testing (create, read, update, delete)
@@ -12,7 +33,7 @@ This project demonstrates automated storage testing using Python, pytest, Docker
 
 ## ARCHITECTURE
 
-Mac → GitHub → Jenkins (Docker on Raspberry Pi) → Python container → mounted storage
+MacBook Pro → GitHub → Jenkins (Docker on Raspberry Pi 5) → Python test container → mounted storage validation
 
 ## Run locally
 
